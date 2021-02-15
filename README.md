@@ -15,8 +15,10 @@ Area itemSize = {40, 30};
 Rect result = bin.TryPackArea(itemSize);
 if (result.IsValid())
 {
+	bool rotated = itemSize.width != itemSize.height && result.right - result.left + 1 == itemSize.height;
 	cout << "Item has been packed at (" << result.left << ',' << result.top << ")"
-		"with a width of " << itemSize.width << " and height of " << itemSize.height << '\n';
+		" with a width of " << (result.right - result.left + 1) << " and a height of " << (result.bottom - result.top + 1)
+		<< rotated ? " and has been rotated 90-degrees.\n" : ".\n";
 }
 else
 {
@@ -50,8 +52,11 @@ class FontAtlas
 					texture.Resize(dimensions.width, dimensions.height);
 					packed = bin.TryPackArea({fontGlyph.width, fontGlyph.height});
 				}
-				texture.BufferSubImage(packed.left, packed.top, fontGlyph.width, fontGlyph.height, fontGlyph.bitmap);
-				Glyph newGlyph = { fontGlyph.advanceX, fontGlyph.advanceY, packed.left, packed.top, fontGlyph.width, fontGlyph.height };
+				unsigned int width = packed.right - packed.left + 1;
+				unsigned int height = packed.bottom - packed.top + 1;
+				bool rotated = width != height && width == fontGlyph.height;
+				texture.BufferSubImage(packed.left, packed.top, width, height, rotated ? rotate(fontGlyph.bitmap) : fontGlyph.bitmap);
+				Glyph newGlyph = { fontGlyph.advanceX, fontGlyph.advanceY, packed.left, packed.top, packed.right, packed.bottom, rotated };
 				glyphs.emplace(c, newGlyph);
 				
 				return newGlyph;
