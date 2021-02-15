@@ -90,7 +90,7 @@ When packing 10,000 items randomly sized from 1x1 to 64x64 in a dynamically expa
 The average time is linear based on the number inserted due to the number of empty regions that results after so many randomly sized items are packed.
 The actual deviation can be seen in the below graph.
 
-![Pack time by empty regions](./images/PackTimeByEmptyRegions.png)
+![Pack time by empty regions](./images/PackTimeByEmptyRegions64.png)
 
 This deviation is due to two factors, the number of empty regions and the size of the item being packed.
 Larger items are easier to pack because there are fewer empty regions that can accomodate the larger item, resulting in fewer overall comparisons.
@@ -109,7 +109,7 @@ and by association the amount of empty regions per number of packed items per si
 For bins that only store up to 1000 items, the memory usage will be up to 10KB for items ranging up to 64x64 in size, or under 1KB for items ranging up to 4x4.
 After 10,000 items have been inserted, memory usage ranges up to 75KB for items ranging up to 64x64 in size or under 5KB for items ranging up to 4x4.
 
-![Memory usage by item size variation and number of items](./images/MemoryUsageByItemsSizes.png)
+![Memory usage by item size variation and number of items](./images/MemoryUsageByItemSizes.png)
 
 ### Efficiency
 The efficiency of the packing can be measured by the percentage of the bin being full.
