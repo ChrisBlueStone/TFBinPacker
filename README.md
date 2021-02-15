@@ -83,7 +83,7 @@ Performance was measured based on how fast items could be packed into an dynamic
 The below results were measured single-threaded on Windows 10 with an AMD Ryzen 7 3700X 8-Core processor.
 
 ### Speed
-When packing 10,000 items randomly sized from 1x1 to 64x64 in a dynamically expanding bin, the average packion time ranges from 0ms to about 3.5ms as given by the following graph.
+When packing 10,000 items randomly sized from 1x1 to 64x64 in a dynamically expanding bin, the average packing time ranges from 0ms to about 3.5ms as given by the following graph.
 
 ![Average packing time of randomly sized items](./images/AveragePackTime64.png)
 
